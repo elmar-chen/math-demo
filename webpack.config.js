@@ -9,14 +9,28 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "[name].bundle.js",
+    filename: "index.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "webpack Boilerplate",
+      title: "Hello2",
       template: path.resolve(__dirname, "./src/template.html"), 
       filename: "index.html", 
     }),
     new CleanWebpackPlugin(),
   ],
+  module:{
+    rules: [
+      {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: [
+              {
+                  loader: 'ts-loader',
+              }
+              
+          ],
+      },
+    ]
+  }
 };
