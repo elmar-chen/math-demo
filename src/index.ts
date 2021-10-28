@@ -50,6 +50,7 @@ class MyTreeNode implements TreeNode {
   s1Len: number;
   s2Len: number;
   lastOp: Op = null;
+  myOp: Op = null;
   getNextChild() {
     if(this.lastOp==Op.REMOVE){
       return null;
@@ -64,24 +65,24 @@ class MyTreeNode implements TreeNode {
     }
     if(appendable){
       this.lastOp = Op.KEEP;
-      return new MyTreeNode(this.s1Len+1, this.s2Len+1);
+      return new MyTreeNode(this.s1Len+1, this.s2Len+1, Op.KEEP);
     } else {
       if(this.s1Len==0) return null;
       this.lastOp = Op.REMOVE;
-      return new MyTreeNode(this.s1Len+1, this.s2Len+1);
+      return new MyTreeNode(this.s1Len+1, this.s2Len+1, Op.KEEP);
     }
   }
-  constructor(s1Len:number, s2Len:number){
+  constructor(s1Len:number, s2Len:number, myOp: Op){
     this.s1Len = s1Len;
     this.s2Len = s2Len;
   }
 }
 var str = "";
 debugger
-dfs(new MyTreeNode(0,0), (t) =>{
+dfs(new MyTreeNode(0,0,null), (t) =>{
   var myNode  = <MyTreeNode>t;
-  if(str.length<myNode.s2Len){
-    str += s2.charAt(myNode.s2Len%s2.length)
+  if(myNode.myOp == Op.KEEP){
+    str += s2.charAt((myNode.s2Len-1)%s2.length)
   }
   console.log(str);
   debugger
