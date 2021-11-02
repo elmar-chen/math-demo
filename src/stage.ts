@@ -14,8 +14,17 @@ class Player {
 }
 
 export default class Stage {
-  move(arg0: string, arg1: number) {
-      throw new Error("Method not implemented.");
+  toStart() {
+    return this;
+  }
+  by(amount: number) {
+    return this;
+  }
+  toEnd() {
+    return this;
+  }
+  move(player: string) {
+      return this;
   }
   private stations: Map<string, Station> = new Map();
   private players: Map<string, Player> = new Map();
