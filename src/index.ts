@@ -9,8 +9,8 @@ stage.player("甲", "A");
 stage.player("乙", "B");
 
 stage.newRound();
-stage.move("甲", 80);
-stage.move("乙", -70);
+stage.move("甲").by(80);
+stage.move("乙").by(-70);
 
 stage.newRound();
 stage.move("甲").toEnd().by(90);
