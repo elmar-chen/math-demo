@@ -4,3 +4,24 @@
 <body>
     <div id="drawing" style="height:500px"></div>
 </body>
+
+<stage>
+  <elements>
+    <station distance="0">A</station>
+    <station distance="150">B</station>
+
+    <player at="A">甲</player>
+    <player at="B">乙</player>
+  </elements>
+
+  <layout>
+    <row id="stations">
+        <text repeat="station" x="{station.distance}" y="0">{station.text}</text>
+    </row>
+    <area id="main">
+      <line repeat="station" direction="v" x="0" length="full" no-space/>
+      <row></row>
+
+    </area>
+  </layout>
+</stage>
