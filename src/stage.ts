@@ -14,6 +14,24 @@ class Player {
 }
 
 export default class Stage {
+  layout: string;
+  
+  draw() {
+    this.layout = "v";
+    this.row("label");
+    this.stations.forEach((st)=>{
+      this.putText(st.label, st.distance);
+    });
+  }
+  putText(label: string, distance: number) {
+    throw new Error("Method not implemented.");
+  }
+  row(arg0: string) {
+    throw new Error("Method not implemented.");
+  }
+  area(arg0: string) {
+    throw new Error("Method not implemented.");
+  }
   toStart() {
     return this;
   }
