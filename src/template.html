@@ -1,39 +1,63 @@
 <head>
-    <title>Hello</title>
+  <title>Hello</title>
 </head>
 <body>
-    <div id="drawing" style="height:500px"></div>
+  <div id="drawing" style="height:500px"></div>
 </body>
 
 <stage>
+  <style >
+    playerground{
+      background-color: beige;
+      scence{
+        margin-between: 10px;
+        padding: 5px 0px;
+        way{
+        height: 15px;
+        line{
+          line-width: 3px;
+        }
+        [player="甲"]{
+          fill:lightcoral;
+          color:crimson;
+        }
+        [player="乙"]{
+          fill:lightblue;
+          color:blue;
+        }
+      }
+    }
+    }
+    
+  </style>
   <elements>
-    <station distance="0">A</station>
-    <station distance="150">B</station>
+    <station at="0">A</station>
+    <station at="150">B</station>
 
     <player at="A">甲</player>
     <player at="B">乙</player>
   </elements>
 
-  <layout>
+  <playground type="lanes" />
     <row id="stations">
-        <text repeat="station" x="{station.distance}" y="0">{station.text}</text>
+      <text repeat="station" x="{station.distance}" y="0">{station.text}</text>
     </row>
-    <row id="main" role="playground">
-      <line repeat="station" direction="v" x="0" length="full" z-index="-1"/>
-      
+    <row id="main">
+      <repeat on="scene">
+        <repeat on="player">
+            <line x0="player."></line>
+        </repeat>
+      </repeat>
     </row>
-  </layout>
+  </playground>
   <drama>
-    <setup>
-      <move between="A, B" shape="line" on-end="reverse"></move>
-    </setup>
     <scene>
-      <move play="甲" dir="right" by="80"/>
-      <move play="乙" dir="left" by="70"/>
+      <move play="甲" dir="right" by="80" />
+      <move play="乙" dir="left" by="70" />
     </scene>
     <scene>
       <move play="甲" by="160" />
-      <move play="乙" by="140"/>
+      <move play="乙" by="140" />
     </scene>
   </drama>
 </stage>
