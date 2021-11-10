@@ -1,28 +1,35 @@
-// class Layout {
-//     rows:any[] = [];
-//     constructor(){
+class Item {
+  x: number;
+  y: number;
+  margin: number[];
+  padding: number[];
+  blocks: Item[];
+  add(sub: Item) {
+    this.blocks.push(sub);
+  }
+  constructor(parent?: Item) {
+    parent.add(this);
+  }
+}
 
-//     }
-// }
-// var layout = new Layout();
-// var context : any = {};
-// context.x = context.y = 0;
-// layout.rows.forEach(r=>{
-//     context.x += r.getMarginAbove();
-// });
-
-import chroma from "chroma-js"
-
-var str =`${chroma.hsv(212,0.1,0.84).hex()}`+("<table style='border-spacing:0;border:1px' with='100%' height=100%>")
-// for(var i=0;i<360;i+=1){
-    for(var s=0;s<25;s+=1){
-    str +=("<tr>")
-        for(var r=60;r<90;r+=1){
-        str +=(`<td style="width:50px;height:40px;background-color:${chroma.hsv(0,s/100,r/100).hex()}">${chroma.hsv(0,s/100,r/100).hex()}<br>${0},${s/100},${r/100}</td>`);
-            }
+class MyText extends Item{
+    font:string;
+    content: string;
+    constructor(parent?: Item, text?:string){
+        super(parent);
+        this.content = text;
     }
-    str +=("</tr>")
+}
 
-// }
-str +=("</table>")
-document.body.innerHTML = str
+var root = new Item();
+root.padding = [0, 10, 0, 10];
+var stationArea = new Item(root);
+var labelA = new MyText(stationArea,"A");
+
+labelA.x = 0;
+labelA.y = 0;
+var labelB = new MyText(stationArea);
+labelB.x = 0;
+labelB.x = 0;
+
+var playground = new Item(root);

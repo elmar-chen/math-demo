@@ -38,19 +38,24 @@
     <player at="B">乙</player>
   </elements>
 
-  <playground type="lanes" />
+  <playground type="two-way-lanes" />
     <row id="stations">
       <text repeat="station" x="{station.distance}" y="0">{station.text}</text>
     </row>
     <row id="main">
       <repeat on="scene">
-        <repeat on="player">
-            <line x0="player."></line>
+        <repeat on="way">
+          <repeat on="player">
+            <line dir="way"></line>
+          </repeat>
         </repeat>
       </repeat>
     </row>
   </playground>
   <drama>
+    <setup>
+      <move between="A,B" on-end="reverse"></move>
+    </setup>
     <scene>
       <move play="甲" dir="right" by="80" />
       <move play="乙" dir="left" by="70" />
