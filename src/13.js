@@ -4,13 +4,14 @@
  * @return {boolean}
  */
  var isMatch = function(s, p) {
-    var states = [0];
+    var heads = [-1];
     Array.prototype.upush = function(i){
         if(this.indexOf(i)<0){
             this.push(i);
         }
     }
     for(var i=0;i<s.length;i++){
+        var input = s.charAt(i);
         var nexts = [];
         for (let j = 0; j < states.length; j++) {
             const st = states[j];
@@ -29,7 +30,6 @@
                         nexts.upush(Math.min(st+1, s.length));
                     }
             }
-
         }
         states = nexts;
     }
