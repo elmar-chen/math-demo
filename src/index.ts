@@ -28,7 +28,7 @@ var labelA = new MyText(stationArea,"A");
 
 labelA.x = 0;
 labelA.y = 0;
-var labelB = new MyText(stationArea);
+var labelB = new MyText(stationArea,"B");
 labelB.x = 0;
 labelB.x = 0;
 
