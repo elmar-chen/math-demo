@@ -39,7 +39,26 @@
 window.addEventListener('DOMContentLoaded', (ev) => {
   var canvas = <HTMLCanvasElement>document.getElementById("drawing");
   const d2 = canvas.getContext("2d");
-  d2.font= "bold 48px serif";;
-  d2.fillText("abcdefÂghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 10 ,50);
-  console.log(d2.measureText("abcdefÂghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+  d2.font= "bold 120px serif";;
+  d2.fillText("abcdefÂ♂♀╂╊╊∫∮ghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 10 ,150);
+  var m = d2.measureText("abcdefÂ♂♀╂╊╊∫∮ghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  d2.beginPath();
+  d2.moveTo(10, 150-m.actualBoundingBoxAscent);
+  d2.lineTo(2000, 150-m.actualBoundingBoxAscent);
+  d2.moveTo(10, 150+m.actualBoundingBoxDescent);
+  d2.lineTo(2000, 150+m.actualBoundingBoxDescent);
+  d2.moveTo(10, 150);
+  d2.lineTo(2000, 150);
+  d2.strokeStyle="blue";
+  d2.stroke();
+
+  d2.beginPath();
+  d2.moveTo(10, 150-m.fontBoundingBoxAscent);
+  d2.lineTo(2000, 150-m.fontBoundingBoxAscent);
+  d2.moveTo(10, 150+m.fontBoundingBoxDescent);
+  d2.lineTo(2000, 150+m.fontBoundingBoxDescent);
+  d2.strokeStyle="red";
+  d2.stroke();
+
+  console.log(d2.measureText("abcdefÂ♂♀╂╊╊∫∮ghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"));
 });
