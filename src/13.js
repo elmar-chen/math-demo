@@ -13,7 +13,7 @@
     for(var i=0;i<s.length;i++){
         var input = s.charAt(i);
         var nexts = [];
-        for (let j = 0; j < states.length; j++) {
+        for (let j = 0; j < trans.length; j++) {
             const st = states[j];
             if(st==s.length)continue;
             var trans = p.charAt(st);
