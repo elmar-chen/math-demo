@@ -1,5 +1,8 @@
-import { Position, Length, pos, poses, dims, dim } from "./dimension";
+import { Dimension } from "./dimension";
 class Block {
+  checkSizeType() {
+    throw new Error("Method not implemented.");
+  }
 
   top: string;
   left: string;
@@ -14,10 +17,8 @@ class Block {
   padding: Length[];
   children: Block[] = [];
   height: string;
-  _width: Length;
-  set width(exp: number|string){
-    this._width = dim(exp);
-  }
+  width: Dimension;
+  
 
   constructor(parent?: Block) {
     parent && parent.children.push(this);
@@ -61,8 +62,9 @@ for(var i=0;i<10;i++){
 }
 
 layout(root);
-root.width = "1000";
+root.width = {amount: 1000, unit: "px"};
 function layout(block: Block){
+  block.checkSizeType();
 }
 
 

@@ -1,54 +1,64 @@
+import { indexOf } from "zrender/lib/core/util";
+
 type unit = "%" | "px";
 
-export type Length = {
+export type ExtrinsicDimension = {
   amount: number ;
   unit: unit;
-  type?: "Intrinsic"|"Extrinsic";
-} | "fit-content";
+}
+
+export type IntrinsicDimension = "fit-content" | "max-content" | "min-content";
+
+export type Dimension = ExtrinsicDimension | IntrinsicDimension;
+
+export function isExtrinsic(dim: Dimension):dim is ExtrinsicDimension{
+  return typeof dim !='string';
+}
+
 type align_base = "start" | "end" | "center";
 
-class AbsolutePosition  {
-  self_base: align_base;
-  parent_base: align_base;
-}
+// class AbsolutePosition  {
+//   self_base: align_base;
+//   parent_base: align_base;
+// }
 
-type FloatPosition = Length & {
-  parent_base: align_base;
-}
-export type Position  =  AbsolutePosition|FloatPosition;
+// type FloatPosition = Length & {
+//   parent_base: align_base;
+// }
+// export type Position  =  AbsolutePosition|FloatPosition;
 
-export function dim(exp: string | number): Length {
-  if (typeof exp === "number") {
-    return { amount: exp, unit:'px' };
-  }
-  if (exp.endsWith("%")) {
-    return {
-      amount: parseFloat(exp),
-      unit: "%",
-    };
-  } else {
-    return { amount: parseFloat(exp), unit:'px'};
-  }
-}
-export function pos(exp: string | number): Position {
-  // if (typeof exp == "number") {
-  //   return { amount: exp, unit: 'px', parent_base: 'start'};
-  // }
-  // var tokens = exp.split(/\s+/);
-  // var pos = pos(tokens[0]);
-  // var base = "center" as align_base;
-  // if (tokens.length > 1) {
-  //   if (["top", "left", "start"].includes(tokens[1])) base = "start";
-  //   if (["bottom", "right", "end"].includes(tokens[1])) base = "end";
-  //   if (["center", "middle"].includes(tokens[1])) base = "center";
-  // }
-  // (pos as Position).base = base;
-  return null; 
-}
+// export function dim(exp: string | number): Length {
+//   if (typeof exp === "number") {
+//     return { amount: exp, unit:'px' };
+//   }
+//   if (exp.endsWith("%")) {
+//     return {
+//       amount: parseFloat(exp),
+//       unit: "%",
+//     };
+//   } else {
+//     return { amount: parseFloat(exp), unit:'px'};
+//   }
+// }
+// export function pos(exp: string | number): Position {
+//   // if (typeof exp == "number") {
+//   //   return { amount: exp, unit: 'px', parent_base: 'start'};
+//   // }
+//   // var tokens = exp.split(/\s+/);
+//   // var pos = pos(tokens[0]);
+//   // var base = "center" as align_base;
+//   // if (tokens.length > 1) {
+//   //   if (["top", "left", "start"].includes(tokens[1])) base = "start";
+//   //   if (["bottom", "right", "end"].includes(tokens[1])) base = "end";
+//   //   if (["center", "middle"].includes(tokens[1])) base = "center";
+//   // }
+//   // (pos as Position).base = base;
+//   return null; 
+// }
 
-export function dims(exp: string[] | number[]): Length[] {
-  return exp.flatMap(dim);
-}
-export function poses(exp: string[] | number[]): Position[] {
-  return exp.flatMap(pos);
-}
+// export function dims(exp: string[] | number[]): Length[] {
+//   return exp.flatMap(dim);
+// }
+// export function poses(exp: string[] | number[]): Position[] {
+//   return exp.flatMap(pos);
+// }
