@@ -1,129 +1,38 @@
 <head>
   <title>Hello</title>
   <style>
+
+    div div{
+      /* float: right; */
+      border: 1px solid;
+      height: 300px;
+    }
     span{
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      background-color: goldenrod;
-      float: left;
-    }
-    span:nth-child(2n){
-      width: 60px;
-      height: 60px;
-      background-color: rebeccapurple;
-    }
-    span:nth-child(3n){
-      width: 100px;
-      height: 100px;
-      background-color:cornflowerblue;
-    }
-    div{
-      width: 340px;
+      /* display: block; */
     }
   </style>
-</head>
+  </head>
 <body>
-  <div>
-    <span>1</span>
-    <span>2</span>
-    <span>3</span>
-    <span>4</span>
-    <span>5</span>
-    <span>6</span>
-    <span>7</span>
-    <span>8</span>
-    <span>9</span>
-    <span>10</span>
-    <span>11</span>
-    <span>12</span>
-    <span>13</span>
-    <span>14</span>
-    <span>15</span>
-    <span>16</span>
-    <span>17</span>
-    <span>18</span>
-    <span>19</span>
-    <span>20</span>
-    <span>21</span>
-    <span>22</span>
-    <span>23</span>
-    <span>24</span>
-    <span>25</span>
-    <span>26</span>
-    <span>27</span>
-    <span>28</span>
-    <span>29</span>
-    <span>30</span>
-    <span>31</span>
-    <span>32</span>
-    <span>33</span>
-    <span>34</span>
-    <span>35</span>
-    <span>36</span>
-    <span>37</span>
-    <span>38</span>
-  <div>
-</body>
+  <div style="width: min-content; background-color: cornflowerblue;">
+    <!-- <div style="width:250px">
+      250px
+    </div> -->
+    <!-- <span>B B B B B B B B B B B B B B B B B B B B B B B B -->
 
-<!-- <stage style="display: none;">
-  <style >
-    playerground{
-      background-color: beige;
-      scence{
-        margin-between: 10px;
-        padding: 5px 0px;
-        way{
-        height: 15px;
-        line{
-          line-width: 3px;
-        }
-        [player="甲"]{
-          fill:lightcoral;
-          color:crimson;
-        }
-        [player="乙"]{
-          fill:lightblue;
-          color:blue;
-        }
-      }
-    }
-    }
+      <div style="width:200px">
+        200px
+      </div>
+      <div style="width:80%">
+        80%
+      </div>
+      <div style="width:90%">
+        90%
+      </div>
+    <!-- <span style="font-size: 800px;">A</span> -->
+    <span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span><span>A</span>
+    <!-- <div style="width:300px">
+      700px
+    </div> -->
     
-  </style>
-  <elements>
-    <station at="0">A</station>
-    <station at="150">B</station>
-
-    <player at="A">甲</player>
-    <player at="B">乙</player>
-  </elements>
-
-  <playground type="two-way-lanes" />
-    <row id="stations">
-      <text repeat="station" x="{station.distance}" y="0">{station.text}</text>
-    </row>
-    <row id="main">
-      <repeat on="scene">
-        <repeat on="way">
-          <repeat on="player">
-            <line dir="way"></line>
-          </repeat>
-        </repeat>
-      </repeat>
-    </row>
-  </playground>
-  <drama>
-    <setup>
-      <move between="A,B" on-end="reverse"></move>
-    </setup>
-    <scene>
-      <move play="甲" dir="right" by="80" />
-      <move play="乙" dir="left" by="70" />
-    </scene>
-    <scene>
-      <move play="甲" by="160" />
-      <move play="乙" by="140" />
-    </scene>
-  </drama>
-</stage> -->
+  </div>
+</body>

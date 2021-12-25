@@ -1,11 +1,24 @@
-import {Position, Size,pos,poses,dims, dim} from "./dimension";
+import { Position, Length, pos, poses, dims, dim } from "./dimension";
 class Block {
-  x: Position;
-  y: Position;
 
-  margin: Size[];
-  padding: Size[];
+  top: string;
+  left: string;
+  bottom: string;
+  right: string;
+
+
+
+  position: "absolute" | "static";
+  display: "block" | "inline" | "inline-block";
+  margin: Length[];
+  padding: Length[];
   children: Block[] = [];
+  height: string;
+  _width: Length;
+  set width(exp: number|string){
+    this._width = dim(exp);
+  }
+
   constructor(parent?: Block) {
     parent && parent.children.push(this);
   }
@@ -14,6 +27,7 @@ class Block {
 class MyText extends Block {
   font: string;
   content: string;
+
   constructor(parent: Block, text?: string) {
     super(parent);
     this.content = text;
@@ -23,54 +37,37 @@ class MyText extends Block {
 var root = new Block();
 root.padding = dims([0, 10, 0, 10]);
 
-
-
-
 var stationArea = new Block(root);
 
 var labelA = new MyText(stationArea, "A");
 
-
-labelA.x = {
-   self_base: 'center',
-   parent_base: 'start'
-}
+labelA.position = "absolute";
+labelA.left = "0 px center";
 
 
 var labelB = new MyText(stationArea, "B");
-labelB.x = {
-  self_base: 'center',
-  parent_base: 'start'
-}
+labelB.position = "absolute";
+labelB.right = "0 px center";
+
 
 var playground = new Block(root);
+playground.display = 'block';
+
+playground.height='fit-content';
+
+for(var i=0;i<10;i++){
+  var rect = new Block(playground);
+  rect.height="100px";
+}
+
+layout(root);
+root.width = "1000";
+function layout(block: Block){
+}
 
 
 
 
-// // window.addEventListener('DOMContentLoaded', (ev) => {
-// //   var canvas = <HTMLCanvasElement>document.getElementById("drawing");
-// //   const d2 = canvas.getContext("2d");
-// //   d2.font= "bold 120px serif";;
-// //   d2.fillText("abcdefÂ♂♀╂╊╊∫∮ghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 10 ,150);
-// //   var m = d2.measureText("abcdefÂ♂♀╂╊╊∫∮ghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-// //   d2.beginPath();
-// //   d2.moveTo(10, 150-m.actualBoundingBoxAscent);
-// //   d2.lineTo(2000, 150-m.actualBoundingBoxAscent);
-// //   d2.moveTo(10, 150+m.actualBoundingBoxDescent);
-// //   d2.lineTo(2000, 150+m.actualBoundingBoxDescent);
-// //   d2.moveTo(10, 150);
-// //   d2.lineTo(2000, 150);
-// //   d2.strokeStyle="blue";
-// //   d2.stroke();
 
-// //   d2.beginPath();
-// //   d2.moveTo(10, 150-m.fontBoundingBoxAscent);
-// //   d2.lineTo(2000, 150-m.fontBoundingBoxAscent);
-// //   d2.moveTo(10, 150+m.fontBoundingBoxDescent);
-// //   d2.lineTo(2000, 150+m.fontBoundingBoxDescent);
-// //   d2.strokeStyle="red";
-// //   d2.stroke();
 
-// //   console.log(d2.measureText("abcdefÂ♂♀╂╊╊∫∮ghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"));
-// // });
+

@@ -1,8 +1,9 @@
 type unit = "%" | "px";
 
-export type Size = {
+export type Length = {
   amount: number ;
   unit: unit;
+  type?: "Intrinsic"|"Extrinsic";
 } | "fit-content";
 type align_base = "start" | "end" | "center";
 
@@ -11,14 +12,14 @@ class AbsolutePosition  {
   parent_base: align_base;
 }
 
-type FloatPosition = Size & {
+type FloatPosition = Length & {
   parent_base: align_base;
 }
 export type Position  =  AbsolutePosition|FloatPosition;
 
-export function dim(exp: string | number): Size {
+export function dim(exp: string | number): Length {
   if (typeof exp === "number") {
-    return { amount: exp };
+    return { amount: exp, unit:'px' };
   }
   if (exp.endsWith("%")) {
     return {
@@ -26,7 +27,7 @@ export function dim(exp: string | number): Size {
       unit: "%",
     };
   } else {
-    return { amount: parseFloat(exp) };
+    return { amount: parseFloat(exp), unit:'px'};
   }
 }
 export function pos(exp: string | number): Position {
@@ -45,7 +46,7 @@ export function pos(exp: string | number): Position {
   return null; 
 }
 
-export function dims(exp: string[] | number[]): Size[] {
+export function dims(exp: string[] | number[]): Length[] {
   return exp.flatMap(dim);
 }
 export function poses(exp: string[] | number[]): Position[] {
