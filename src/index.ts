@@ -1,5 +1,8 @@
 import { Position, length, pos, poses, dims, dim } from "./length";
 class Block {
+  checkSizeType() {
+    throw new Error("Method not implemented.");
+  }
 
   top: string;
   left: string;
@@ -61,8 +64,9 @@ for(var i=0;i<10;i++){
 }
 
 layout(root);
-root.width = "1000";
+root.width = {amount: 1000, unit: "px"};
 function layout(block: Block){
+  block.checkSizeType();
 }
 
 
