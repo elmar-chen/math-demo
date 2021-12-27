@@ -1,4 +1,4 @@
-import { Position, Length, pos, poses, dims, dim } from "./dimension";
+import { Position, length, pos, poses, dims, dim } from "./length";
 class Block {
 
   top: string;
@@ -10,11 +10,11 @@ class Block {
 
   position: "absolute" | "static";
   display: "block" | "inline" | "inline-block";
-  margin: Length[];
-  padding: Length[];
+  margin: length[];
+  padding: length[];
   children: Block[] = [];
   height: string;
-  _width: Length;
+  _width: length;
   set width(exp: number|string){
     this._width = dim(exp);
   }

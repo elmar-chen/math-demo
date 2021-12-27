@@ -1,23 +1,46 @@
 type unit = "%" | "px";
+type length_type = "Intrinsic"|"Extrinsic";
 
-export type Length = {
+type intrinsic_length_name = "min-content"|"max-content"|'fit-content';
+
+export type length = {
   amount: number ;
   unit: unit;
-  type?: "Intrinsic"|"Extrinsic";
+  type: length_type;
 } | "fit-content";
-type align_base = "start" | "end" | "center";
 
+
+class ExtrinsicLength{
+  amount: number;
+  unit: 'px'|'%';
+  type: length_type = 'Extrinsic';
+}
+
+class IntrinsicLength {
+  name: intrinsic_length_name;
+  type: length_type = 'Intrinsic';
+  unit: null;
+  amount: 0;
+}
+
+function parseLength(exp:intrinsic_length_name):length{
+  return new IntrinsicLength();
+}
+function parseLength(exp:string){
+
+}
+type align_base = "start" | "end" | "center";
 class AbsolutePosition  {
   self_base: align_base;
   parent_base: align_base;
 }
 
-type FloatPosition = Length & {
+type FloatPosition = length & {
   parent_base: align_base;
 }
 export type Position  =  AbsolutePosition|FloatPosition;
 
-export function dim(exp: string | number): Length {
+export function dim(exp: string | number): length {
   if (typeof exp === "number") {
     return { amount: exp, unit:'px' };
   }
@@ -46,7 +69,7 @@ export function pos(exp: string | number): Position {
   return null; 
 }
 
-export function dims(exp: string[] | number[]): Length[] {
+export function dims(exp: string[] | number[]): length[] {
   return exp.flatMap(dim);
 }
 export function poses(exp: string[] | number[]): Position[] {
