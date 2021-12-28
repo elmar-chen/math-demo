@@ -12,6 +12,7 @@ function isIntrinsicLengthName(str: string): str is intrinsic_length_name {
 abstract class Length {
   abstract get type(): length_type;
   abstract get pxAmount(): number;
+  abstract get isPercentage():boolean;
 }
 
 export type length = Length;
@@ -31,6 +32,9 @@ class PixelLength extends ExtrinsicLength {
   get pxAmount(): number {
     return this.amount;
   }
+ get isPercentage(): boolean {
+      return false;
+  }
 }
 class PercentageLength extends ExtrinsicLength {
   amount: number;
@@ -39,6 +43,9 @@ class PercentageLength extends ExtrinsicLength {
     super();
     this.amount = amount;
   }
+  get isPercentage(): boolean {
+    return true;
+}
 }
 class IntrinsicLength extends Length {
   name: intrinsic_length_name;
@@ -49,6 +56,9 @@ class IntrinsicLength extends Length {
   }
   get type(): length_type {
     return "Intrinsic";
+  }
+  get isPercentage(): boolean {
+      return false;
   }
 }
 

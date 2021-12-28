@@ -68,6 +68,10 @@ function layout(block: Block) {
 function determineWidth(block: Block) {
   for (let i = 0; i < block.children.length; i++) {
     const child = block.children[i];
+    var w = child.width;
+    if(w.isPercentage){
+      
+    }
     // if(child.width.type=='Extrinsic' && child.width.unit=='%' || child.width.type=='Intrinsic'){
     // //  child.width. =  
     // }
